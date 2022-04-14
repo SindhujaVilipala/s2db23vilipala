@@ -5,27 +5,13 @@ block content
   div(class="container-fluid")
         div(class="row")
             -
-                let Restaurant = [
-                    {
-                        "Itemname": "Biryani",
-                        "Quantity": 2,
-                        "price": "Twentyone USD"
-                    },
-                    {
-                        "Itemname": "Startus",
-                        "Quantity": 6,
-                        "price": "Thirty USD"
-                    },
-                    {
-                        "Itemname": "mangolassi",
-                        "Quantity": 2,
-                        "price": "Ten USD"
-                    },                   
-                ]
+                let Restaurant = results
+                    
+
             each q,index in Restaurant
                 div(class="col-sm-2" onclick=`buy(${index})`) #{q.Itemname}
                 div(class="col-sm-2" onclick=`buy(${index})`) #{q.Quantity}
-                div(class="col-sm-2" onclick=`buy(${index})`) #{q.price}
+                div(class="col-sm-2" onclick=`buy(${index})`) #{q.Price}
   script.                
         function buy(intemNo)
         {
