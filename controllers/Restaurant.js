@@ -72,7 +72,7 @@ exports.restaurant_delete = async function(req, res) {
 exports.restaurant_update_put = async function(req, res) {
     console.log(`update on id ${req.params.id} with body ${JSON.stringify(req.body)}`)
     try {
-        let toUpdate = await restaurant.findById( req.params.id)
+        let toUpdate = await Restaurant.findById( req.params.id)
         // Do updates of properties
         if(req.body.Itemname) toUpdate.Itemname = req.body.Itemname;
         if(req.body.Quantity) toUpdate.Color = req.body.Quantity;
@@ -84,6 +84,7 @@ exports.restaurant_update_put = async function(req, res) {
         res.status(500)
         res.send(`{"error": ${err}: Update for id ${req.params.id} failed`);
     }
+
 }; 
 // VIEWS 
 // Handle a show all view 
@@ -97,42 +98,4 @@ exports.restaurant_view_all_Page = async function(req, res) {
         res.status(500); 
         
     }   
-    // Handle building the view for creating a restaurant.
-// No body, no in path parameter, no query.
-// Does not need to be async
-exports.restaurant_create_Page =  function(req, res) {
-    console.log("create view")
-    try{
-        res.render('restaurantcreate', { title: 'restaurant Create'});
-    }
-    catch(err){
-        res.status(500)
-        res.send(`{'error': '${err}'}`);
-    }
 };
-// Handle building the view for updating a Restaurant.
-// query provides the id
-exports.restaurant_update_Page =  async function(req, res) {
-    console.log("update view for item "+req.query.id)
-    try{
-        let result = await Restaurant.findById(req.query.id)
-        res.render('Restaurantupdate', { title: 'Updated Restaurant', toShow: result });
-    }
-    catch(err){
-        res.status(500)
-        res.send(`{'error': '${err}'}`);
-    }
-};
-// Handle a delete one view with id from query
-exports.restaurant_delete_Page = async function(req, res) {
-    console.log("Delete view for id "  + req.query.id)
-    try{
-        result = await Restaurant.findById(req.query.id)
-        res.render('restaurantdelete', { title: 'Deleted restaurant', toShow: result });
-    }
-    catch(err){
-        res.status(500)
-        res.send(`{'error': '${err}'}`);
-    }
-};
-}; 
