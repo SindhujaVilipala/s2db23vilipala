@@ -1,0 +1,41 @@
+block content 
+  h1= title 
+ 
+  - let restaurantid = toShow._id 
+  - let restaurant_Itemname = toShow.Itemname
+  - let restaurantPrice = toShow.Price
+  - let restaurantQuantity = toShow.Quantity
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{restaurantid} 
+  - let actionid = "/resource/Restaurant/" + restaurantid 
+  form(id='restaurantForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.restaurantAttr(for='restaurant_Itemname') restaurant Itemname 
+        input#restaurant_Itemname(type='text', name='restaurant_Itemname', value= restaurant_Itemname ) 
+    div.form-group 
+        label.restaurantAttr(for='Quantity') restaurant Quantity 
+        input#Quantity(type='number', name='Quantity', value= restaurantQuantity ) 
+    div.form-group 
+        label.restaurantAttr(for='Price') restaurant Price 
+        input#Price(type='text', name='Price', value= restaurantPrice ) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['restaurantForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    }); 
