@@ -1,0 +1,24 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let restaurantid = toShow._id 
+  - let restaurant_Itemname = toShow.Itemname
+  - let restaurantPrice = toShow.Price
+  - let restaurantQuantity = toShow.Quantity
+  div 
+    div.row 
+      div(class='restaurantAttr mr-3') Restaurant  ID is: 
+      div #{restaurantid} 
+    div.row 
+      div(class='restaurantAttr mr-3') Restaurant Itemname is: 
+      div #{restaurant_Itemname}
+    div.row 
+      div(class='costumeAttr mr-3') Costume Price is: 
+      div #{restaurantPrice} 
+    div.row 
+      div(class='restaurantAttr mr-3') Restaurant Quantity is: 
+      div #{restaurantQuantity} 
+    
+    

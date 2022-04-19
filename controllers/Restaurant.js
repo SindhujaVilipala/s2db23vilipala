@@ -31,7 +31,7 @@ exports.restaurant_detail =  async function(req, res) {
    };
 
  
-// Handle Costume create on POST. 
+// Handle restaurant create on POST. 
 exports.restaurant_create_post = async function(req, res) { 
     console.log(req.body) 
     let document = new Restaurant(); 
@@ -99,3 +99,30 @@ exports.restaurant_view_all_Page = async function(req, res) {
         
     }   
 };
+
+// Handle a show one view with id specified by query 
+exports.restaurant_view_one_Page = async function(req, res) { 
+    console.log("single view for id "  + req.query.id) 
+    try{ 
+        result = await Restaurant.findById( req.query.id) 
+        res.render('restaurantdetail',  
+{ title: 'Restaurant Detail', toShow: result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
+// Handle building the view for creating a restaurant. 
+// No body, no in path parameter, no query. 
+// Does not need to be async 
+exports.restaurant_create_Page =  function(req, res) { 
+    console.log("create view") 
+    try{ 
+        res.render('restaurantcreate', { title: 'restaurant Create'}); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
