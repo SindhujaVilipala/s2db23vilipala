@@ -139,3 +139,16 @@ exports.restaurant_update_Page =  async function(req, res) {
         res.send(`{'error': '${err}'}`); 
     } 
 }; 
+//Handle a delete one view with id from query 
+exports.restaurant_delete_Page = async function(req, res) { 
+    console.log("Delete view for id "  + req.query.id) 
+    try{ 
+        result = await Restaurant.findById(req.query.id) 
+        res.render('restaurantdelete', { title: 'Restaurant Delete', toShow: 
+result }); 
+    } 
+    catch(err){ 
+        res.status(500) 
+        res.send(`{'error': '${err}'}`); 
+    } 
+}; 
