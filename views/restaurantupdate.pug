@@ -48,7 +48,7 @@ block content
       console.log("starting delete") 
       // update first 
       fetch(actionid, { 
-        method: 'PUT'      // Don't need a body for the delete 
+        method: 'PUT'      // Don't need a body for the update
       }).then((resp) => { 
         return resp.json(); // or resp.text() or whatever the server sends 
       }).then((body) => { 
