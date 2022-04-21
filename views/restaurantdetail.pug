@@ -20,5 +20,21 @@ block content
     div.row 
       div(class='restaurantAttr mr-3') Restaurant Quantity is: 
       div #{restaurantQuantity} 
-    
+  script. 
+    function detailOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'GET'      // Don't need a body for the delete 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Detail succeded") 
+        window.location.href='/restaurant' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Detail failed " + error ) 
+      }); 
+    } 
     

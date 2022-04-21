@@ -26,7 +26,7 @@ block content
         label.restaurantAttr(for='Price') Price
         input#Price(type='text', name='Price', value= Price )
     input(type="submit")
-  script.
+  //script.
     document.forms['restaurantForm'].addEventListener('submit', (event) => {
       event.preventDefault();
       // TODO do something here to show user that form is being submitted
@@ -43,3 +43,20 @@ block content
         alert("Update failed " + error )
       });
     });
+  script. 
+    function updateOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'PUT'      // Don't need a body for the delete 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        window.location.href='/restaurant' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    } 
