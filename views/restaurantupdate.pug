@@ -46,7 +46,7 @@ block content
   script. 
     function updateOnid() { 
       console.log("starting delete") 
-      // update first 
+      update first 
       fetch(actionid, { 
         method: 'PUT'      // Don't need a body for the update
       }).then((resp) => { 
@@ -54,9 +54,9 @@ block content
       }).then((body) => { 
         alert("Update succeded") 
         window.location.href='/restaurant' 
-        // TODO handle body 
+         TODO handle body 
       }).catch((error) => { 
-        // TODO handle error 
+         TODO handle error 
         alert("Update failed " + error ) 
       }); 
     } 
