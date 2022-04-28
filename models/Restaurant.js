@@ -8,7 +8,6 @@ Quantity:{
 },
 Price:{
     type: String,
-   
     required: true
 }
 })
